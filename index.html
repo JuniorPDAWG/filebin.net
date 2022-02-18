@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     
-<!-- Mirrored from filebin.net/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 18 Feb 2022 16:24:03 GMT -->
+<!-- Mirrored from filebin.net/jvt2l6l26un8aixh by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 18 Feb 2022 16:23:53 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
         <meta charset="utf-8">
@@ -9,11 +9,17 @@
         <meta name="description" content="Convenient file sharing. Think of it as Pastebin for files. Registration is not required. Large files are supported.">
         <meta name="author" content="Espen Braastad">
         <link rel="icon" href="static/img/favicon.png">
+
+        <link rel="preload" href="static/webfonts/fa-regular-400.woff2" as="font">
+        <link rel="preload" href="static/webfonts/fa-solid-900.woff2" as="font">
+
         <link rel="stylesheet" href="static/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="static/css/fontawesome.all.min.css"/>
         <link rel="stylesheet" href="static/css/custom.css"/>
-        <title>Filebin</title>
+
+        <title>Filebin | jvt2l6l26un8aixh</title>
         <script src="static/js/filebin2.js"></script>
+        
         <script>
             window.onload = function () {
                 if (typeof FileReader == "undefined") alert ("Your browser \
@@ -25,7 +31,7 @@
                 var fileField = document.getElementById("fileField");
                 var bin = "jvt2l6l26un8aixh";
                 var binURL = "jvt2l6l26un8aixh.html";
-                var cid = "";
+                var client = new ClientJS();
                 FileAPI = new FileAPI(
                     fileCount,
                     fileList,
@@ -33,7 +39,7 @@
                     fileField,
                     bin,
                     binURL,
-                    cid
+                    client.getFingerprint()
                 );
                 FileAPI.init();
                 
@@ -44,6 +50,7 @@
                 }
             }
         </script>
+        
     </head>
     <body class="container-xl">
 
@@ -54,17 +61,25 @@
     <div>
         <ul class="navbar-nav">
 	    
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Create new bin</a>
+                </li>
             
         </ul>
     </div>
     <div class="text-right">
         <ul class="navbar-nav">
 	    
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalTakedown">Takedown</a>
+                </li>
+	    
         </ul>
     </div>
 </nav>
 
 
+<hr class="mt-0"/>
 
 
 
@@ -95,47 +110,449 @@
 
 
 
-        <h1 class="display-1">Filebin</h1>
+        <h1>Filebin</h1>
 
+        
+            
+            <span id="fileCount"></span>
+
+            
+            <span id="fileDrop"></span>
+
+            
+            <span id="fileList"></span>
+        
+
+        
         
         <p class="lead">
-            Convenient file sharing in three steps without
-            registration.
+        
+            
+                The bin <a class="link-primary link-custom" href="jvt2l6l26un8aixh.html">jvt2l6l26un8aixh</a> was created 3 minutes ago, updated 2 minutes ago
+                
+
+                and it expires 6 days from now.
+                It contains 1 uploaded
+
+                file at 26 MB.
+                    
+                
+
+                
+                
+            
         </p>
 
         
+            <p>
+                <ul class="nav nav-pills">
+                    <li class="nav-item me-3">
+                        <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#modalArchive">
+                            <i class="fas fa-fw fa-cloud-download-alt"></i> Download files
+                        </a>
+                    </li>
 
-        <p class="lead pt-1">
-            <strong class="mt-2 pe-2"><span class="rounded-pill bg-secondary btn btn-sm text-light" style="width: 2rem; height:2rem;">1</span></strong>
-            <br class="mobile-break">
-            <span class="fileUpload btn btn-primary mt-2 mb-2"><label>Select files to upload<input type="file" class="upload" id="fileField" multiple></label></span> or <em>drag-and-drop</em> files into this browser window.
-        </p>
-        <p class="lead">
-            <strong class="mt-2 pe-2"><span class="rounded-pill bg-secondary btn btn-sm text-light" style="width: 2rem; height:2rem;">2</span></strong>
-            <br class="mobile-break">
-            <span>Wait until the file uploads complete.</span>
-        </p>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                                <a class="btn btn-primary dropdown-toggle text-white" href="#" id="dropdownBinMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    More
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBinMenuButton">
+                                    
+                                        <li>
+                                            <span class="dropdown-item fileUpload">
+                                                <span>
+                                                    <i class="fas fa-fw fa-cloud-upload-alt text-primary"></i> Upload more files
+                                                </span>
+                                                <input type="file" class="upload" id="fileField" multiple/>
+                                            </span>
+                                        </li>
+                                    
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalBinProperties" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-fw fa-info-circle text-primary"></i> Bin properties
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalBinQR" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-fw fa-qrcode text-primary"></i> QR code
+                                        </a>
+                                    </li>
+                                    <li>
+                                    <div class="dropdown-divider"></div>
+                                    </li>
+                                    
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalLockBin" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-fw fa-lock text-warning"></i> Lock bin
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalDeleteBin">
+                                        <i class="far fa-fw fa-trash-alt text-danger"></i> Delete bin
+                                    </a>
+                                    </li>
+                                </ul>
+                        </div>
+                    </li>
+                </ul>
+            </p>
+        
 
         
-        <span id="fileCount"></span>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Filename</th>
+                        <th scope="col">Content type</th>
+                        <th scope="col">Size</th>
+                        <th scope="col">Uploaded</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td>
+                                
+                                    
+                                        <i class="far fa-fw fa-file-video"></i>
+                                    
+                                
+                                
+                                    <a class="link-primary link-custom" href="https://situla.bitbit.net/filebin/a0c9171b8c6db3430571d584923add92e084c818ecd39a9a5c908f4db565128c/441ab3e324f3e724dfe3dfa9b82d40577ac6c1a0166540030afbea7dec75defb?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=HZXB1J7T0UN34UN512IW%2F20220218%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20220218T162401Z&amp;X-Amz-Expires=30&amp;X-Amz-SignedHeaders=host&amp;response-cache-control=max-age%3D30&amp;response-content-disposition=filename%3D%222022-02-17_23-52-46.mp4%22&amp;response-content-type=video%2Fmp4&amp;X-Amz-Signature=b5e3807ddb948a753e9e24f37239a38dc43523a6b0c5849556ae56c4a54892f6">2022-02-17_23-52-46.mp4</a>
+                                
+                            </td>
+                            <td>
+                                video/mp4
+                            </td>
+                            <td>
+                                26 MB
+                            </td>
+                            <td>
+                                2 minutes ago
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle small link-custom" href="#" id="dropdownFileMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        More
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownFileMenuButton">
+                                        
+                                            <a class="dropdown-item" href="https://situla.bitbit.net/filebin/a0c9171b8c6db3430571d584923add92e084c818ecd39a9a5c908f4db565128c/441ab3e324f3e724dfe3dfa9b82d40577ac6c1a0166540030afbea7dec75defb?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=HZXB1J7T0UN34UN512IW%2F20220218%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20220218T162401Z&amp;X-Amz-Expires=30&amp;X-Amz-SignedHeaders=host&amp;response-cache-control=max-age%3D30&amp;response-content-disposition=filename%3D%222022-02-17_23-52-46.mp4%22&amp;response-content-type=video%2Fmp4&amp;X-Amz-Signature=b5e3807ddb948a753e9e24f37239a38dc43523a6b0c5849556ae56c4a54892f6">
+                                                <i class="fas fa-fw fa-cloud-download-alt text-primary"></i> Download file
+                                            </a>
+                                        
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalFileProperties-0">
+                                            <i class="fas fa-fw fa-info-circle text-primary"></i> File properties
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalDeleteFile-0">
+                                            <i class="far fa-fw fa-trash-alt text-danger"></i> Delete file
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        
 
         
-        <span id="fileDrop"></span>
+        <div class="modal fade" id="modalArchive" tabindex="-1" role="dialog" aria-labelledby="modalArchiveTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalArchiveTitle">Download files</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            The files in this bin can be downloaded as a single file archive. The default filename of the archive is <code>jvt2l6l26un8aixh</code> and the size is 26 MB uncompressed.
+                        </p>
+
+                        
+                            <p class="lead">Select archive format to download:</p>
+
+                            <ul class="nav nav-pills">
+                                <li class="nav-item me-3">
+                                    <a class="btn btn-primary" href="archive/jvt2l6l26un8aixh/jvt2l6l26un8aixh.tar"><i class="fas fa-fw fa-file-archive"></i> Tar</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-primary" href="archive/jvt2l6l26un8aixh/jvt2l6l26un8aixh.zip"><i class="fas fa-fw fa-file-archive"></i> Zip</a>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
         
-        <span id="fileList"></span>
+        <div class="modal fade" id="modalDeleteBin" tabindex="-1" role="dialog" aria-labelledby="modalDeleteBinTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header alert-secondary">
+                        <h5 class="modal-title" id="modalDeleteBinTitle">Delete bin</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are free to delete this bin. However you are encouraged to delete your own bins only, or bins that are being used to share obvious illegal, copyrighted or malicious content. Bins that are deleted can not be reused.</p>
 
-        <p class="lead">
-            <strong class="mt-2 pe-2"><span class="rounded-pill bg-secondary btn btn-sm text-light" style="width: 2rem; height:2rem;">3</span></strong>
-            <br class="mobile-break">
-            <span>The files will be available at <a rel="nofollow" href="xhotkjlydssoox9m.html">https://filebin.net/xhotkjlydssoox9m</a> which is a link you can share.</span>
-        </p>
+                        <p>This action is not reversible.</p>
 
-        <p class="pt-2 text-muted">
-            <em>
-                The files can be deleted manually at any time and will in any case be deleted automatically 6 days from now.
-            </em>
-        </p>
+                        <p class="lead">Delete the bin <a class="link-primary" href="jvt2l6l26un8aixh.html">jvt2l6l26un8aixh</a> and all of its files?</p>
+
+                        <div id="deleteStatus"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="pull-left">
+                        <button type="button" class="btn btn-danger" id="deleteButton" href="https://screenshot.best/FCEH9S.mp4"<i class="fas fa-fw fa-trash-alt"></i> Confirm</button>
+                        </div>
+                        <a href="jvt2l6l26un8aixh.html" class="btn btn-secondary"><i class="fa fa-close"></i> Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        <div class="modal fade" id="modalBinProperties" tabindex="-1" role="dialog" aria-labelledby="modalBinPropertiesTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header alert-secondary">
+                        <h5 class="modal-title" id="modalBinPropertiesTitle">Bin properties</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <dl class="row">
+                            <dt class="col-sm-3">Bin</dt>
+                            <dd class="col-sm-9">
+                                <a class="link-primary link-custom" href="jvt2l6l26un8aixh.html">
+                                    jvt2l6l26un8aixh
+                                </a>
+                            </dd>
+
+                            <dt class="col-sm-3">Number of files</dt>
+                            <dd class="col-sm-9">
+                                1
+                            </dd>
+
+                            <dt class="col-sm-3">Total size</dt>
+                            <dd class="col-sm-9">
+                                26 MB (26182613 bytes)
+                            </dd>
+
+                            <dt class="col-sm-3">Status</dt>
+                            <dd class="col-sm-9">
+                                
+                                    Unlocked, which means that files can be uploaded and updated.
+                                
+                            </dd>
+
+                            <dt class="col-sm-3">Created</dt>
+                            <dd class="col-sm-9">
+                                3 minutes ago
+                                (2022-02-18 16:20:41 UTC)
+                            </dd>
+
+                            <dt class="col-sm-3">Approved</dt>
+                            <dd class="col-sm-9">
+                                
+                                    3 minutes ago
+                                    (2022-02-18 16:20:41 UTC)
+                                
+                            </dd>
+
+                            <dt class="col-sm-3">Last updated</dt>
+                            <dd class="col-sm-9">
+                                2 minutes ago
+                                (2022-02-18 16:21:50 UTC)
+                            </dd>
+
+                            <dt class="col-sm-3">Expires</dt>
+                            <dd class="col-sm-9">
+                                
+                                    6 days from now
+                                
+                                (2022-02-25 16:21:50 UTC)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        <div class="modal fade" id="modalBinQR" tabindex="-1" role="dialog" aria-labelledby="modalBinQRTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header alert-secondary">
+                        <h5 class="modal-title" id="modalBinQRTitle">QR code</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>The URL to this bin is <a href="jvt2l6l26un8aixh.html">https://filebin.net/jvt2l6l26un8aixh</a>, which is embedded in the QR code below. This can be used to conveniently share the URL across mobile devices without having to type out the URL.</p>
+
+                        <div class="text-center">
+                            <img src="qr/jvt2l6l26un8aixh.png" alt="QR code for https://filebin.net/jvt2l6l26un8aixh"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        <div class="modal fade" id="modalLockBin" tabindex="-1" role="dialog" aria-labelledby="modalLockBinTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header alert-secondary">
+                        <h5 class="modal-title" id="modalLockBinTitle">Lock bin</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>The bin is currently unlocked, which means that new files can be added to it and existing files can be updated. If the bin is locked, the bin will become read only and no more file uploads will be allowed. Note that a locked bin can still be deleted.</p>
+                <p>This action is not reversible.</p>
+
+                        <p class="lead">Do you want to lock bin <a class="link-primary" href="jvt2l6l26un8aixh.html">jvt2l6l26un8aixh</a>?</p>
+
+                        <div id="lockStatus"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="pull-left">
+                        <button type="button" class="btn btn-warning" id="lockButton" onclick="lockBin('jvt2l6l26un8aixh','lockStatus')"><i class="fas fa-fw fa-lock"></i> Confirm</button>
+                        </div>
+                        <a href="jvt2l6l26un8aixh.html" class="btn btn-secondary"><i class="fa fa-close"></i> Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        
+            <div class="modal fade" id="modalDeleteFile-0" tabindex="-1" role="dialog" aria-labelledby="modalDeleteFileTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header alert-secondary">
+                            <h5 class="modal-title" id="modalDeleteFileTitle">Delete file</h5>
+                            
+                            <a class="btn-close" href="jvt2l6l26un8aixh.html"></a>
+                        </div>
+                        <div class="modal-body">
+                            <p>You are free to delete any file in this bin. However you are encouraged to delete the files that you have uploaded only, or files with obvious malicious or illegal content.</p>
+                            <p>This action is not reversible.</p>
+
+                            <p class="lead">Delete the file
+                                
+                                    <a class="link-primary" href="https://situla.bitbit.net/filebin/a0c9171b8c6db3430571d584923add92e084c818ecd39a9a5c908f4db565128c/441ab3e324f3e724dfe3dfa9b82d40577ac6c1a0166540030afbea7dec75defb?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=HZXB1J7T0UN34UN512IW%2F20220218%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20220218T162403Z&amp;X-Amz-Expires=30&amp;X-Amz-SignedHeaders=host&amp;response-cache-control=max-age%3D30&amp;response-content-disposition=filename%3D%222022-02-17_23-52-46.mp4%22&amp;response-content-type=video%2Fmp4&amp;X-Amz-Signature=517468233753e462201dcaadcb32734704324601177cf654ddbd833893807797">2022-02-17_23-52-46.mp4</a>
+                                
+                                ?
+                            </p>
+
+                            <div id="deleteStatus-0"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="pull-left">
+                            <button type="button" class="btn btn-danger" id="deleteButton" onclick="deleteURL('/jvt2l6l26un8aixh/2022-02-17_23-52-46.mp4','deleteStatus-0')"><i class="fas fa-fw fa-trash-alt"></i> Confirm</button>
+                            </div>
+                            <a href="jvt2l6l26un8aixh.html" class="btn btn-secondary"><i class="fa fa-close"></i> Close</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+
+        
+        
+            <div class="modal fade" id="modalFileProperties-0" tabindex="-1" role="dialog" aria-labelledby="modalFilePropertiesTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header alert-secondary">
+                            <h5 class="modal-title" id="modalFilePropertiesTitle">File properties</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <dl class="row">
+                                <dt class="col-sm-3">Filename</dt>
+                                <dd class="col-sm-9">
+                                    
+                                        <a class="link-primary link-custom" href="https://situla.bitbit.net/filebin/a0c9171b8c6db3430571d584923add92e084c818ecd39a9a5c908f4db565128c/441ab3e324f3e724dfe3dfa9b82d40577ac6c1a0166540030afbea7dec75defb?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=HZXB1J7T0UN34UN512IW%2F20220218%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20220218T162403Z&amp;X-Amz-Expires=30&amp;X-Amz-SignedHeaders=host&amp;response-cache-control=max-age%3D30&amp;response-content-disposition=filename%3D%222022-02-17_23-52-46.mp4%22&amp;response-content-type=video%2Fmp4&amp;X-Amz-Signature=517468233753e462201dcaadcb32734704324601177cf654ddbd833893807797">2022-02-17_23-52-46.mp4</a>
+                                    
+                                </dd>
+
+                                <dt class="col-sm-3">Bin</dt>
+                                <dd class="col-sm-9">
+                                    <a class="link-primary link-custom" href="jvt2l6l26un8aixh.html">
+                                        jvt2l6l26un8aixh
+                                    </a>
+                                </dd>
+
+                                <dt class="col-sm-3">File size</dt>
+                                <dd class="col-sm-9">
+                                    26 MB (26182613 bytes)
+                                </dd>
+
+                                
+
+                                <dt class="col-sm-3">Created</dt>
+                                <dd class="col-sm-9">
+                                    2 minutes ago
+                                    (2022-02-18 16:21:50 UTC)
+                                </dd>
+
+                                <dt class="col-sm-3">Expires</dt>
+                                <dd class="col-sm-9">
+                                    
+                                        6 days from now
+                                    
+                                    (2022-02-25 16:21:50 UTC)
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+
+        
+        <div class="modal fade" id="modalApprovalInfo" tabindex="-1" role="dialog" aria-labelledby="modalApprovalInfoTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header alert-secondary">
+                        <h5 class="modal-title" id="modalApprovalInfoTitle">Pending approval</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>This bin is pending administrator approval.</p>
+                        <p>While the bin is pending approval, files can be added, updated and deleted as normal and the bin can also be locked. File downloads and archive downloads, however, will be rejected until the bin is approved.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
         
 <nav class="navbar navbar-expand-sm navbar-light small">
@@ -155,36 +572,10 @@
     </ul>
 </nav>
 
-
-        
-        <div class="modal fade" id="modalStorageLimit" tabindex="-1" role="dialog" aria-labelledby="modalStorageLimitTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header alert-secondary">
-                        <h5 class="modal-title" id="modalStorageLimitTitle">Storage capacity reached</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="lead">What is this?</p>
-                        <p>This service has a storage capacity limit in place. When overall usage is above this limit, new file uploads will be rejected until usage is below the limit again.</p>
-
-                        <p class="lead">How to get below the limit?</p>
-                        <p>Usage is reduced as files uploaded earlier are deleted. Files are deleted after a period of time after being uploaded, which is an automatic and continuous process. In addition, usage is reduced whenever existing files are manually deleted which users can do at any time.</p>
-
-                        <p class="lead">What to do now?</p>
-                        <p>If you need to upload files and the storage capacity is reached, check back soon again. Maybe then usage is below the limit and new file uploads will be accepted.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-
         <script src="static/js/popper.min.js"></script>
         <script src="static/js/bootstrap.min.js"></script>
+        <script src="static/js/client.min.js"></script>
     </body>
 
-<!-- Mirrored from filebin.net/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 18 Feb 2022 16:24:04 GMT -->
+<!-- Mirrored from filebin.net/jvt2l6l26un8aixh by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 18 Feb 2022 16:23:59 GMT -->
 </html>
